@@ -6,24 +6,24 @@ export default [
                 answer: "Ignorujesz to",
                 cost: 0,
                 effect: {
-                    tension: 7
+                    tension: 4
                 }
             },
             {
                 answer: "Masowo sadzisz drzewa",
                 cost: 345,
                 effect: {
-                    "wood-level": 10,
-                    tension: -3,
-                    contamination: -5,
-                    temperature: -6
+                    "wood-level": 20,
+                    tension: -5,
+                    contamination: -10,
+                    temperature: -13
                 }
             },
             {
                 answer: "Organizujesz kampanie świadomości społecznej",
                 cost: 1235,
                 effect: {
-                    tension: -15
+                    tension: -18
                 }
             },
             {
@@ -47,15 +47,16 @@ export default [
                 effect: {
                     contamination: 12,
                     temperature: 11,
-                    tension: 20,
-                    "water-level": 7
+                    tension: 25,
+                    "water-level": 15
                 }
             },
             {
                 answer: "Inwestujesz w urządzenia przetwarzające wodę słoną na wodę słodką",
                 cost: 3000,
                 effect: {
-                    "water-level": 16
+                    "water-level": 30,
+                    contamination: -8
                 }
             },
             {
@@ -84,7 +85,8 @@ export default [
                 effect: {
                     contamination: -10,
                     tension: -5,
-                    temperature: 3
+                    temperature: 3,
+                    "wood-level": -15
                 }
             },
             {
@@ -93,29 +95,33 @@ export default [
                 effect: {
                     contamination: 6,
                     temperature: 2,
-                    tension: 3
+                    tension: 3,
+                    "wood-level": -8
                 }
             },
             {
                 answer: "Budujesz nowe kopalnie",
                 cost: 600,
                 effect: {
-                    contamination: 4,
-                    temperature: 6,
-                    tension: -12
+                    contamination: 15,
+                    temperature: 10,
+                    tension: -12,
+                    "wood-level": -6
                 }
             },
             {
                 answer: "Kupujesz surowce od sąsiadujących krajów",
                 cost: 3000,
                 effect: {
-                    tension: -20
+                    tension: -20,
+                    contamination: 15,
+                    "wood-level": -6
                 }
             }
         ]
     },
     {
-        question: "Zaczeło braknać opału w ogniskach domowych, w wydobycie czego zainwestujesz?",
+        question: "Zaczeło brakować opału w ogniskach domowych ludzi, w wydobycie czego zainwestujesz?",
         answers: [
             {
                 answer: "Węgiel brunatny",
@@ -160,33 +166,33 @@ export default [
         ]
     },
     {
-        question: "Miasto potrzebuje prądu, co zbudujesz?",
+        question: "Dużo państw potrzebuje prądu, co zbudujesz?",
         answers: [
             {
-                answer: "Elektrownia wodna",
+                answer: "Elektrownie wodne",
                 cost: 1500,
                 effect: {
                     "wood-level": -5,
-                    "water-level": 2,
+                    "water-level": 20,
                     tension: -5,
                     temperature: -1
                 }
             },
             {
-                answer: "Elektrownia atomowa",
+                answer: "Elektrownie atomowe",
                 cost: 2200,
                 effect: {
                     "wood-level": 10,
-                    "water-level": -3,
+                    "water-level": -8,
                     contamination: 2,
                     tension: 1
                 }
             },
             {
-                answer: "Elektrownia węglowa",
+                answer: "Elektrownie węglowe",
                 cost: 400,
                 effect: {
-                    "wood-level": -8,
+                    "wood-level": -15,
                     "water-level": -4,
                     contamination: 10,
                     temperature: 6,
@@ -194,11 +200,11 @@ export default [
                 }
             },
             {
-                answer: "Elektrownia wiatrowa",
+                answer: "Elektrownie wiatrowe",
                 cost: 900,
                 effect: {
-                    "wood-level": 1,
-                    "water-level": 1,
+                    "wood-level": 3,
+                    "water-level": 3,
                     tension: -5,
                     temperature: -4
                 }
@@ -261,34 +267,35 @@ export default [
                 answer: "Zaczynasz hodować bydło na skalę masową",
                 cost: 1236,
                 effect: {
-                    temperature: 8,
-                    contamination: 2
+                    temperature: 12,
+                    contamination: 5,
+                    tension: -10
                 }
             },
             {
                 answer: "Skupiasz się na polach uprawnych",
                 cost: 900,
                 effect: {
-                    "wood-level": 3,
-                    contamination: -4,
-                    tension: -3
+                    "wood-level": -18,
+                    contamination: -15,
+                    tension: -10
                 }
             },
             {
                 answer: "Zwiększasz nacisk na produkty puszkowane",
-                cost: 410,
+                cost: 210,
                 effect: {
-                    contamination: 6,
-                    temperature: 1,
-                    tension: 1
+                    contamination: 15,
+                    temperature: 5,
+                    tension: 10
                 }
             },
             {
                 answer: "Zaczynasz produkować jedzenie w labolatorium (chemiczne)",
                 cost: 1000,
                 effect: {
-                    contamination: 5,
-                    "wood-level": 4,
+                    contamination: 15,
+                    "wood-level": 25,
                     tension: 5
                 }
             }
@@ -301,7 +308,7 @@ export default [
             "answer": "Zignoruj",
             "cost": 0,
             "effect": {
-              "contamination": 14,
+              "contamination": 25,
               "wood-level": -7,
               "water-level": 3
             }
@@ -320,7 +327,7 @@ export default [
             "answer": "Apeluj o ograniczenie gazów",
             "cost": 400,
             "effect": {
-              "contamination": 10,
+              "contamination": 20,
               "wood-level": -3,
               "water-level": 2
             }
@@ -345,7 +352,7 @@ export default [
             "cost": 700,
             "effect": {
               "tension": -5,
-              "contamination": 8
+              "contamination": 18
             }
           },
           {
@@ -353,22 +360,22 @@ export default [
             "cost": 1200,
             "effect": {
               "tension": -3,
-              "contamination": -5
+              "contamination": 12
             }
           },
           {
             "answer": "Wprowadzić ustawę, zabezpieczającą obecnie pracujących przed utratą pracy",
             "cost": 600,
             "effect": {
-              "tension": 5,
-              "contamination": 6
+              "tension": 3,
+              "contamination": 8
             }
           },
           {
             "answer": "Sztucznie spowolnić wprowadzanie maszyn, by opóźnić nadciągający kryzys",
             "cost": 500,
             "effect": {
-              "tension": 18,
+              "tension": 10,
               "contamination": -15
             }
           }
@@ -381,7 +388,7 @@ export default [
             "answer": "To zignorować",
             "cost": 0,
             "effect": {
-              "tension": 40
+              "tension": 30
             }
           },
           {
@@ -398,7 +405,7 @@ export default [
             "answer": "Wykorzystać potencjał asteroidowego górnictwa",
             "cost": 5000,
             "effect": {
-              "tension": -15,
+              "tension": -25,
               "temperature": -10,
               "contamination": -18,
               "wood-level": 10,
@@ -423,7 +430,7 @@ export default [
             "cost": 100,
             "effect": {
               "tension": 9,
-              "contamination": 9,
+              "contamination": 20,
               "wood-level": -9
             }
           },
@@ -432,7 +439,7 @@ export default [
             "cost": 300,
             "effect": {
               "tension": 3,
-              "contamination": 6,
+              "contamination": 9,
               "wood-level": -9,
               "water-level": -4
             }
@@ -464,7 +471,7 @@ export default [
             "cost": 200,
             "effect": {
               "tension": 5,
-              "contamination": 13,
+              "contamination": 25,
               "water-level": -7
             }
           },
@@ -472,8 +479,8 @@ export default [
             "answer": "Rozporządź inspekcje firm zajmujących się wywózką odpadów",
             "cost": 500,
             "effect": {
-              "tension": 2,
-              "contamination": 3,
+              "tension": 4,
+              "contamination": 8,
               "water-level": -4
             }
           },
@@ -512,7 +519,7 @@ export default [
             "answer": "Wybierz ochotników, którzy opanują sytuację",
             "cost": 400,
             "effect": {
-              "temperature": 6,
+              "temperature": 2,
               "contamination": 8,
               "wood-level": -6
             }
@@ -533,7 +540,7 @@ export default [
             "effect": {
               "tension": -7,
               "contamination": -7,
-              "temperature": -10
+              "temperature": -15
             }
           }
         ]
@@ -554,8 +561,9 @@ export default [
             "answer": "Nie podejmuj żadnych kroków",
             "cost": 0,
             "effect": {
-              "contamination": 15,
-              "temperature": 10
+              "contamination": 20,
+              "wood-level": -10,
+              "temperature": 4
             }
           },
           {
