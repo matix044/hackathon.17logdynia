@@ -295,15 +295,15 @@ export default [
         ]
     },
     {
-        "question": "Jeden z najbardziej dochodowych koncernów elektroniki okazał się łamać regulacje w zakresie emisji gazów cieplarnianych. Jakie podejmujesz kroki?",
+        "question": "Jeden z największych koncernów elektroniki okazał się łamać regulacje w zakresie emisji gazów cieplarnianych. Jakie podejmujesz kroki?",
         "answers": [
           {
             "answer": "Zignoruj",
             "cost": 0,
             "effect": {
-              "contamination": 6,
-              "wood-level": -2,
-              "water-level": 2
+              "contamination": 14,
+              "wood-level": -7,
+              "water-level": 3
             }
           },
           {
@@ -320,19 +320,19 @@ export default [
             "answer": "Apeluj o ograniczenie gazów",
             "cost": 400,
             "effect": {
-              "contamination": 4,
-              "wood-level": -1,
-              "water-level": 1
+              "contamination": 10,
+              "wood-level": -3,
+              "water-level": 2
             }
           },
           {
             "answer": "Nałóż sankcje na firmę",
             "cost": 500,
             "effect": {
-              "tension": 5,
-              "contamination": -4,
-              "wood-level": 1,
-              "water-level": -1
+              "tension": 8,
+              "contamination": -7,
+              "wood-level": 5,
+              "water-level": -2
             }
           }
         ]
@@ -344,15 +344,15 @@ export default [
             "answer": "Kontynuować rozwój",
             "cost": 700,
             "effect": {
-              "tension": -2,
-              "contamination": 4
+              "tension": -5,
+              "contamination": 8
             }
           },
           {
             "answer": "Zapewnić darmowe szkolenia techniczne, by ludzie mogli się przystosować",
             "cost": 1200,
             "effect": {
-              "tension": -5,
+              "tension": -3,
               "contamination": -5
             }
           },
@@ -360,16 +360,16 @@ export default [
             "answer": "Wprowadzić ustawę, zabezpieczającą obecnie pracujących przed utratą pracy",
             "cost": 600,
             "effect": {
-              "tension": 1,
-              "contamination": 2
+              "tension": 5,
+              "contamination": 6
             }
           },
           {
             "answer": "Sztucznie spowolnić wprowadzanie maszyn, by opóźnić nadciągający kryzys",
             "cost": 500,
             "effect": {
-              "tension": 4,
-              "contamination": -2
+              "tension": 18,
+              "contamination": -15
             }
           }
         ]
@@ -381,7 +381,7 @@ export default [
             "answer": "To zignorować",
             "cost": 0,
             "effect": {
-              "tension": 30
+              "tension": 40
             }
           },
           {
@@ -396,12 +396,12 @@ export default [
           },
           {
             "answer": "Wykorzystać potencjał asteroidowego górnictwa",
-            "cost": 2000,
+            "cost": 5000,
             "effect": {
-              "tension": -5,
-              "temperature": -2,
-              "contamination": -10,
-              "wood-level": 4,
+              "tension": -15,
+              "temperature": -10,
+              "contamination": -18,
+              "wood-level": 10,
               "water-level": 1
             }
           },
@@ -422,28 +422,28 @@ export default [
             "answer": "Poczekać z werdyktem aż do zbadania problemu przez naukowców",
             "cost": 100,
             "effect": {
-              "tension": 4,
-              "contamination": 4,
-              "wood-level": -3
+              "tension": 9,
+              "contamination": 9,
+              "wood-level": -9
             }
           },
           {
             "answer": "Wprowadzić ostrzejsze regulacje dla używania plastiku",
             "cost": 300,
             "effect": {
-              "tension": 2,
-              "contamination": 3,
-              "wood-level": -1,
-              "water-level": -1
+              "tension": 3,
+              "contamination": 6,
+              "wood-level": -9,
+              "water-level": -4
             }
           },
           {
             "answer": "Sfinansować filtry dla zbiorników wodnych, usuną mikroplastik",
             "cost": 700,
             "effect": {
-              "tension": -2,
-              "contamination": -3,
-              "water-level": 1
+              "tension": -4,
+              "contamination": -15,
+              "water-level": 6
             }
           },
           {
@@ -451,7 +451,7 @@ export default [
             "cost": 1000,
             "effect": {
               "tension": -3,
-              "contamination": -8
+              "contamination": -20
             }
           }
         ]
@@ -464,8 +464,8 @@ export default [
             "cost": 200,
             "effect": {
               "tension": 5,
-              "contamination": 6,
-              "water-level": -1
+              "contamination": 13,
+              "water-level": -7
             }
           },
           {
@@ -474,7 +474,7 @@ export default [
             "effect": {
               "tension": 2,
               "contamination": 3,
-              "water-level": -1
+              "water-level": -4
             }
           },
           {
@@ -491,7 +491,7 @@ export default [
             "effect": {
               "tension": -5,
               "contamination": -10,
-              "water-level": 1
+              "water-level": 5
             }
           }
         ]
@@ -503,8 +503,8 @@ export default [
             "answer": "Pozostaw pożar samemu sobie.",
             "cost": 0,
             "effect": {
-              "temperature": 2,
-              "contamination": 10,
+              "temperature": 10,
+              "contamination": 15,
               "wood-level": -10
             }
           },
@@ -512,7 +512,7 @@ export default [
             "answer": "Wybierz ochotników, którzy opanują sytuację",
             "cost": 400,
             "effect": {
-              "temperature": 1,
+              "temperature": 6,
               "contamination": 8,
               "wood-level": -6
             }
@@ -522,16 +522,18 @@ export default [
             "cost": 800,
             "effect": {
               "tension": 5,
-              "contamination": 4,
-              "wood-level": -3
+              "contamination": 3,
+              "wood-level": -3,
+              "temperature": -6
             }
           },
           {
             "answer": "Wykup drogi sprzęt lotniczy do szybkiego opanowania sytuacji",
             "cost": 1700,
             "effect": {
-              "tension": -2,
-              "contamination": -2
+              "tension": -7,
+              "contamination": -7,
+              "temperature": -10
             }
           }
         ]
@@ -543,8 +545,8 @@ export default [
             "answer": "Zwiększ kontrolę na granicach państwa",
             "cost": 700,
             "effect": {
-              "wood-level": -8,
-              "water-level": -4,
+              "wood-level": -5,
+              "water-level": -5,
               "tension": 6
             }
           },
@@ -552,8 +554,8 @@ export default [
             "answer": "Nie podejmuj żadnych kroków",
             "cost": 0,
             "effect": {
-              "contamination": 10,
-              "temperature": 8
+              "contamination": 15,
+              "temperature": 10
             }
           },
           {
@@ -561,9 +563,9 @@ export default [
             "cost": 200,
             "effect": {
               "wood-level": -4,
-              "water-level": -2,
-              "tension": 1,
-              "contamination": 2,
+              "water-level": -3,
+              "tension": 3,
+              "contamination": 1,
               "temperature": 2
             }
         },
@@ -571,10 +573,10 @@ export default [
             "answer": "Wprowadz delegalizację rośliny w tym kraju pod karą więzienia lub grzywny",
             "cost": 950,
             "effect": {
-              "wood-level": -7,
-              "water-level": -3,
+              "wood-level": -10,
+              "water-level": -5,
               "tension": 7,
-              "contamination": -5,
+              "contamination": -8,
               "temperature": -4
             }
           }
