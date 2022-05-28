@@ -7,9 +7,7 @@ var planet = document.getElementById('planet');
 
 var screenShake = ScreenShake();
 
-function shake(shake) {
- screenShake.shake( camera, new THREE.Vector3(0.3, 0, 0), shake );
-}
+
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(30, planet.clientWidth/ planet.clientHeight, 0.1, 60);
@@ -20,6 +18,9 @@ const renderer = new THREE.WebGLRenderer({
         antialias: true
       })
 renderer.setSize(planet.clientWidth, planet.clientHeight);
+function shake(shake) {
+        screenShake.shake( camera, new THREE.Vector3(0.2, 0, 0), shake );
+}
 
 planet.appendChild(renderer.domElement);
 
@@ -92,7 +93,7 @@ const cloudVariants = {
         watery: [ "../images/zalana/Ziemia_zalana_pomiedzy.png",  "../images/zalana/Ziemia_zalana_chmury.png"]
 }
 
-function changeTexture(type, isFullyDestroyed, noShake) {
+export function changeTexture(type, isFullyDestroyed, noShake) {
         var destroyedState = isFullyDestroyed ? 1 : 0;
         
         if(typeof cloudVariants[type][0] == "undefined") {
@@ -118,6 +119,8 @@ function changeTexture(type, isFullyDestroyed, noShake) {
 var index = 0;
 var types = ['normal', 'nuclear', 'frozen', 'dry', 'noforest', 'toxic', 'watery'];
 
+
+
 if (window.location.href.indexOf("planet") > -1) {
         var earthCache = [];
         var cloudCache = [];
@@ -141,12 +144,11 @@ setInterval(() => {
 }, 800);
         
 }
-if (window.location.href.indexOf("wybory") > -1) {
-const inputField = document.getElementById("whatNuke");
-document.getElementById("nuke").onclick = function() {changeTexture(types[inputField.value], true)}
-}
+
+const stillCameraPosition = new THREE.Vector3(4, 0, 0);
 
 const animate = function () {
+        camera.position.lerp(stillCameraPosition, 0.2);
         
         renderer.autoClear = false;
         renderer.clear();

@@ -24,7 +24,6 @@ html, body {
 }
 
 #loading-screen {
-    display: none;
     position: absolute;
 	z-index: 2;
 	top: 0;
@@ -33,7 +32,7 @@ html, body {
 	height: 100%;
 	opacity: 1;
  	transition: 1s opacity;
-    background: radial-gradient(circle farthest-corner at 10% 20%,  rgba(14,174,87,1) 0%, rgba(12,116,117,1) 90%);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
 #loading-screen.fade-out {

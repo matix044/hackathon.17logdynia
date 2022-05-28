@@ -32,12 +32,7 @@ app.listen("GET", "/", () => {
     return $html("./public/templates/index.html");
 });
 
-app.listen("GET", "/planet", () => {
-    console.log("GET :: ./public/templates/planet.html");
-    return $html("./public/templates/planet.html");
-});
-
-app.listen("GET", "/wybory", () => {
+app.listen("GET", "/game", () => {
     console.log("GET :: ./public/templates/choices.html");
     return $html("./public/templates/choices.html");
 });

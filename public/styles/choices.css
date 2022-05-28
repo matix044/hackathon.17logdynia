@@ -15,6 +15,14 @@ body {
     background-image: url("../images/background.png");
 }
 
+div.barDiv{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    padding: 0px;
+}
+
 #root {
     display: flex;
     flex-direction: column;
@@ -39,28 +47,34 @@ body {
 #stats-container #stats {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     margin-left: 5%;
     margin-right: -5%;
     height: 100%;
-    width: calc(95% - var(--earth-width));
-}
-
-.barDiv{
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    height: 100%;
+    width: calc(88% - var(--earth-width));
 }
 
 #stats-container #stats progress {
     width: 100%;
-    height: 15%;
+    height: 35%;
     border-radius: 12px;
     background: rgba(255, 255, 255, 0.1);
     box-shadow: 1px 2px 4px 0 rgba(0, 0, 0, 0.24);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
+}
+
+#stats .bar-container {
+    display: flex;
+    flex-direction: row-reverse;
+    height: 20%;
+    align-items: center;
+}
+
+#stats .bar-container img {
+    display: flex;
+    height: 50%;
+    margin-right: 2%;
 }
 
 #stats-container #stats progress::-webkit-progress-bar {
@@ -128,7 +142,7 @@ body {
 	   -webkit-linear-gradient(top, 
 	                           rgba(255, 255, 255, .25), 
 	                           rgba(0, 0, 0, .25)),
-	   -webkit-linear-gradient(left, #303030, rgb(103, 29, 221));
+	   -webkit-linear-gradient(left, #303030, rgb(236, 236, 236));
 }
 
 main {

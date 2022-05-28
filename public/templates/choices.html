@@ -1,51 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/styles/font.css" />
-    <link rel="stylesheet" href="/styles/choses.css" />
-    <link rel="stylesheet" href="https://threejs.org/build/three.js" />
-    <link rel="stylesheet" href="../styles/planet.css">
-    <script src="../scripts/questions.js" defer></script>
-    <script src="../scripts/game.js" defer></script>
-</head>
-<body>
-    <div id="root">
-        <section id="stats-container">
-            <div id="earth">
-                <section id="loading-screen">
-                    <div id="loader"></div>
-                    <div id="flavorText">Budowanie planety Ziemi...</div>
-                </section>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="theme-color" content="#1f5ed4" />
+        <meta name="”robots”" content="index" />
+        <meta name="description" content="Ocal ludzkość w symulacji ludzkości pracując jako zarządca Ziemi." />
+        <meta name="keywords" content="ziemia, hackathon, symulacja" />
+        <meta name="author" content="Jakub Skorupiński, Kuba Sreberski, Agata Trepczyk, Julia Malek, Krzysztof Rapior" />
+        <link rel="icon" type="image/png" href="/icons/logo.svg" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Hackathon - Symulacja ziemi" />
+        <meta property="og:description" content="Ocal ludzkość w symulacji ludzkości pracując jako zarządca Ziemi." />
+        <meta property="og:site_name" content="Hackathon - Symulacja ziemi" />
+        <meta property="og:image" content="/icons/logo.svg" />
+        <title>Hackathon - Symulacja ziemi</title>
+        <link rel="stylesheet" href="/styles/font.css" />
+        <link rel="stylesheet" href="/styles/choices.css" />
+        <link rel="stylesheet" href="https://threejs.org/build/three.js" />
+        <link rel="stylesheet" href="../styles/planet.css" />
+    </head>
+    <body>
+        <div id="root">
+            <section id="stats-container">
+                <div id="earth">
+                    <section id="loading-screen">
+                        <div id="loader"></div>
+                        <div id="flavorText">Budowanie planety Ziemi...</div>
+                    </section>
                     <div id="planet"></div>
-            </div>
-            <div id="stats">
-                <progress value="35" max="100" id="temperature"></progress>
-                <progress value="80" max="100" id="wood-level"></progress> 
-                <progress value="45" max="100" id="water-level"></progress>
-                <progress value="0" max="0" id="contamination"></progress>
-                <progress value="10" max="100" id="tension"></progress>
-            </div>
-        </section>
-        <main>
-            <h2 id="question">Kliknij aby rozpocząć</h2>
-            <div id="options">
-                <button class="option" id="opt-1" onclick="updateGame(1);">Zacznij gre</button>
-                <button class="option" id="opt-2" disabled onclick="updateGame(2);"></button> 
-                <button class="option" id="opt-3" disabled onclick="updateGame(3);"></button>
-                <button class="option" id="opt-4" disabled onclick="updateGame(4);"></button>
+                </div>
+                <div id="stats">
+                    <div class="bar-container">
+                        <progress value="35" max="100" id="temperature"></progress>
+                        <img src="../icons/termometr.svg" class="barIcon" alt="Temperatura" />
+                    </div>
+                    <div class="bar-container">
+                        <progress value="80" max="100" id="wood-level"></progress>
+                        <img src="../icons/drzewka.svg" class="barIcon" alt="Zalesienie" />
+                    </div>
+                    <div class="bar-container">
+                        <progress value="45" max="100" id="water-level"></progress>
+                        <img src="../icons/woda.svg" class="barIcon" alt="Poziom wody" />
+                    </div>
+                    <div class="bar-container">
+                        <progress value="0" max="0" id="contamination"></progress>
+                        <img src="../icons/reaktor.svg" class="barIcon" alt="Toksyczność" />
+                    </div>
+                    <div class="bar-container">
+                        <progress value="10" max="100" id="tension"></progress>
+                        <img src="../icons/tension.svg" class="barIcon" alt="Napięcie społeczne" />
+                    </div>
+                </div>
+            </section>
+            <main>
+                <h2 id="question">Kliknij aby rozpocząć</h2>
+                <div id="options">
+                    <button class="option" id="opt-1">Zacznij gre</button>
+                    <button class="option" id="opt-2" disabled></button>
+                    <button class="option" id="opt-3" disabled></button>
+                    <button class="option" id="opt-4" disabled></button>
+                </div>
+                <p id="extra">Najlepszy wynik: 0</p>
+            </main>
+        </div>
 
-                
-            </div>
-            <p id="extra">Najlepszy wynik: 0</p>
-            <button id="nuke">NUKE</button>
-            <input id="whatNuke" value="1">
-            <script type="module" src="../scripts/earth.js"></script>
-        </main>
-    </div>
-
-</body>
+        <script type="module" src="../scripts/earth.js"></script>
+        <script type="module" src="../scripts/questions.js" defer></script>
+        <script type="module" src="../scripts/game.js" defer></script>
+    </body>
 </html>
