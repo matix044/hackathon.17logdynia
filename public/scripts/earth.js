@@ -74,20 +74,20 @@ scene.add(earth);
 const lazyTextureLoader = new THREE.TextureLoader();
 const blank = undefined;
 const planetVariants = {
-        normal: [earthTexture, earthTexture],
+        normal: ["../images/ziemia.png", "../images/ziemia.png"],
         nuclear: [ "../images/atomic/ziemia_po_wybuchach_ale_prawie.png",  "../images/atomic/ziemia_po_wybuchach.png"],
         frozen: [ "../images/frozen/ziemia_prawie_zamrozona.png",  "../images/frozen/ziemia_zamrozona.png"],
         dry: [ "../images/susza/ziemia_prawie_wysuszona.png",  "../images/susza/ziemia_wysuszona.png"],
-        noforest: [ "../images/wylesienie/ziemia_prawie_wylesienie.png",  "../images/atomic/ziemia_po_wybuchach.png"],
+        noforest: [ "../images/wylesienie/ziemia_prawie_wylesienie.png",  "../images/wylesienie/ziemia_wylesienie.png"],
         toxic: [ "../images/zanieczyszczenie/ziemia_prawie_zanieczyszczona.png",  "../images/zanieczyszczenie/ziemia_zanieczyszczona.png"],
         watery: [ "../images/zalana/ziemia_prawie_zalana.png",  "../images/zalana/ziemia_zalana.png"]
 }
 const cloudVariants = {
-        normal: [cloudTexture, cloudTexture],
+        normal: ["../images/chmury.png", "../images/chmury.png"],
         nuclear: [ "../images/atomic/chmurki_wybuch_atomowy_pomiedzy.png",  "../images/atomic/chmurki_wybuch_atomowy.png"],
         frozen: [blank, blank],
         dry: [blank, blank],
-        noforest: [blank, blank],
+        noforest: ["../images/chmury.png", "../images/chmury.png"],
         toxic: [ "../images/zanieczyszczenie/Chmury_skazone_pomiedzy.png",  "../images/zanieczyszczenie/Chmury_skazone.png"],
         watery: [ "../images/zalana/Ziemia_zalana_pomiedzy.png",  "../images/zalana/Ziemia_zalana_chmury.png"]
 }
@@ -103,7 +103,6 @@ function changeTexture(type, isFullyDestroyed, noShake) {
         } 
         if(typeof cloudVariants[type][0] == "string") {
                 cloudMaterial.map = lazyTextureLoader.load(cloudVariants[type][destroyedState], function () {
-                        if(!noShake) {shake(300 * (5-(destroyedState*4)/5))};
                         cloudMaterial.map.needsUpdate = true;
                 });
                 earthMaterial.map = lazyTextureLoader.load(planetVariants[type][destroyedState], function () {
@@ -120,14 +119,26 @@ var index = 0;
 var types = ['normal', 'nuclear', 'frozen', 'dry', 'noforest', 'toxic', 'watery'];
 
 if (window.location.href.indexOf("planet") > -1) {
+        var earthCache = [];
+        var cloudCache = [];
+for(var i = 0; i < types.length; i++) {
+        var t = types[i];
+        if(typeof cloudVariants[t][1] != "undefined") {
+        var c = lazyTextureLoader.load(cloudVariants[t][1]);
+        cloudCache.push(c);
+        }
+        var e = lazyTextureLoader.load(planetVariants[t][1]);
+        earthCache.push(e);
+}
         
 setInterval(() => {
-        console.log(types[index]);
-        changeTexture(types[index], 1, true);
+        cloudMaterial.map = cloudCache[index];
+        earthMaterial.map = earthCache[index];
+        console.log("up!")
                 if(index >= 6) {
                 index = 0
                 } else index++;
-}, 18000);
+}, 800);
         
 }
 if (window.location.href.indexOf("wybory") > -1) {
