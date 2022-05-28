@@ -1,40 +1,47 @@
 import * as THREE from '../lib/three_module.js'
 import {WEBGL} from '../lib/WEBGL.js'
 import {OrbitControls} from '../lib/OrbitControls.js'
-
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 0.1, 60);
+import {ScreenShake} from '../lib/ScreenShake.js'
 
 var planet = document.getElementById('planet');
 
-camera.position.set(18, 0, 0);
+var screenShake = ScreenShake();
+
+function shake(shake) {
+ screenShake.shake( camera, new THREE.Vector3(0.3, 0, 0), shake );
+}
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(30, planet.clientWidth/ planet.clientHeight, 0.1, 60);
+
+camera.position.set(4, 0, 0);
 const renderer = new THREE.WebGLRenderer({
         alpha: true,
         antialias: true
       })
-renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setSize(planet.clientWidth, planet.clientHeight);
 
 planet.appendChild(renderer.domElement);
 
-
 const controls = new OrbitControls(camera, renderer.domElement);
+controls.enabled = false;
 
-var windowHalfX = window.innerWidth / 2;
-var windowHalfY = window.innerHeight / 2;
+var windowHalfX = planet.clientWidth/ 2;
+var windowHalfY = planet.clientHeight / 2;
 
 function onWindowResize() {
 
-        windowHalfX = window.innerWidth / 2;
-        windowHalfY = window.innerHeight / 2;
+        windowHalfX = planet.clientWidth/ 2;
+        windowHalfY = planet.clientHeight / 2;
 
-        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.aspect = planet.clientWidth/ planet.clientHeight;
         camera.updateProjectionMatrix();
 
-        renderer.setSize( window.innerWidth, window.innerHeight );
+        renderer.setSize( planet.clientWidth, planet.clientHeight );
 }
 window.addEventListener( 'resize', onWindowResize );
 
-const loadingManager = new THREE.LoadingManager( () => {
+const loading = new THREE.LoadingManager( () => {
 	
         const loadingScreen = document.getElementById( 'loading-screen' );
         loadingScreen.classList.add( 'fade-out' );
@@ -44,19 +51,14 @@ const loadingManager = new THREE.LoadingManager( () => {
               });
 } );
 
-const loader = new THREE.TextureLoader(loadingManager);
-loader.load('../images/background.png' , function(texture)
-            {
-             scene.background = texture;  
-            });
-
-const earthTexture = loader.load("../images/ziemia.png");
+const textureLoader = new THREE.TextureLoader(loading);
+const earthTexture = textureLoader.load("../images/ziemia.png");
 const earthGeometry = new THREE.SphereGeometry(1, 40, 40);
 const earthMaterial = new THREE.MeshBasicMaterial({
   map: earthTexture
 })
 
-const cloudTexture = loader.load("../images/chmury.png");
+const cloudTexture = textureLoader.load("../images/chmury.png");
 const cloudGeometry = new THREE.SphereGeometry(1.01, 40, 40);
 const cloudMaterial = new THREE.MeshBasicMaterial({
   map: cloudTexture,
@@ -67,9 +69,78 @@ scene.add(clouds);
 const earth = new THREE.Mesh(earthGeometry, earthMaterial);
 scene.add(earth);
 
+//[0] - wariant niecałkowity, [1] - wariant całkowity
+//normal jest taki sam w obu przypadkach dla zachowania ciągłości
+const lazyTextureLoader = new THREE.TextureLoader();
+const blank = undefined;
+const planetVariants = {
+        normal: [earthTexture, earthTexture],
+        nuclear: [ "../images/atomic/ziemia_po_wybuchach_ale_prawie.png",  "../images/atomic/ziemia_po_wybuchach.png"],
+        frozen: [ "../images/frozen/ziemia_prawie_zamrozona.png",  "../images/frozen/ziemia_zamrozona.png"],
+        dry: [ "../images/susza/ziemia_prawie_wysuszona.png",  "../images/susza/ziemia_wysuszona.png"],
+        noforest: [ "../images/wylesienie/ziemia_prawie_wylesienie.png",  "../images/atomic/ziemia_po_wybuchach.png"],
+        toxic: [ "../images/zanieczyszczenie/ziemia_prawie_zanieczyszczona.png",  "../images/zanieczyszczenie/ziemia_zanieczyszczona.png"],
+        watery: [ "../images/zalana/ziemia_prawie_zalana.png",  "../images/zalana/ziemia_zalana.png"]
+}
+const cloudVariants = {
+        normal: [cloudTexture, cloudTexture],
+        nuclear: [ "../images/atomic/chmurki_wybuch_atomowy_pomiedzy.png",  "../images/atomic/chmurki_wybuch_atomowy.png"],
+        frozen: [blank, blank],
+        dry: [blank, blank],
+        noforest: [blank, blank],
+        toxic: [ "../images/zanieczyszczenie/Chmury_skazone_pomiedzy.png",  "../images/zanieczyszczenie/Chmury_skazone.png"],
+        watery: [ "../images/zalana/Ziemia_zalana_pomiedzy.png",  "../images/zalana/Ziemia_zalana_chmury.png"]
+}
+
+function changeTexture(type, isFullyDestroyed, noShake) {
+        var destroyedState = isFullyDestroyed ? 1 : 0;
+        
+        if(typeof cloudVariants[type][0] == "undefined") {
+                earthMaterial.map = lazyTextureLoader.load(planetVariants[type][destroyedState], function () {
+                        if(!noShake) {shake(300 * (5-(destroyedState*4)/5))};
+                        earthMaterial.map.needsUpdate = true;
+                }); 
+        } 
+        if(typeof cloudVariants[type][0] == "string") {
+                cloudMaterial.map = lazyTextureLoader.load(cloudVariants[type][destroyedState], function () {
+                        if(!noShake) {shake(300 * (5-(destroyedState*4)/5))};
+                        cloudMaterial.map.needsUpdate = true;
+                });
+                earthMaterial.map = lazyTextureLoader.load(planetVariants[type][destroyedState], function () {
+                        if(!noShake) {shake(300 * (5-(destroyedState*4)/5))};
+                        earthMaterial.map.needsUpdate = true;
+                });
+        } else if(typeof cloudVariants[type][0] == "object") {
+                cloudMaterial.map = cloudVariants[type][destroyedState];
+                earthMaterial.map = planetVariants[type][destroyedState];
+        }
+
+}
+var index = 0;
+var types = ['normal', 'nuclear', 'frozen', 'dry', 'noforest', 'toxic', 'watery'];
+
+if (window.location.href.indexOf("planet") > -1) {
+        
+setInterval(() => {
+        console.log(types[index]);
+        changeTexture(types[index], 1, true);
+                if(index >= 6) {
+                index = 0
+                } else index++;
+}, 18000);
+        
+}
+if (window.location.href.indexOf("wybory") > -1) {
+const inputField = document.getElementById("whatNuke");
+document.getElementById("nuke").onclick = function() {changeTexture(types[inputField.value], true)}
+}
+
 const animate = function () {
+        
         renderer.autoClear = false;
         renderer.clear();
+
+        screenShake.update(camera);
 
 	requestAnimationFrame( animate );
         earth.rotation.y += 0.0005
